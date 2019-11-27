@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MantenimientoPY.Models;
+using System.Data.SqlClient;
 
 namespace MantenimientoPY.Controllers
 {
@@ -28,6 +29,24 @@ namespace MantenimientoPY.Controllers
                 }
             }
             return RedirectToAction("Index", "Home");
+        }
+        public void GetCoordenadas(int id) {
+            string queryString = "SELECT latitudDenuncia, longitudDenuncia FROM Denuncias Where idDenuncia = " + id;
+            string connectionString = "data source=protectyourselfdatabase.database.windows.net;initial catalog=Protect;user id=dbmaster;password=DbMa$ter;MultipleActiveResultSets=True;App=EntityFramework";
+
+            using (SqlConnection connection = new SqlConnection(
+                connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(queryString, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ViewBag.latitud = reader[0];
+                    ViewBag.longitud = reader[1];
+                }
+            }
         }
         public async Task<ActionResult> EmergenciasActivas()
         {
@@ -77,9 +96,11 @@ namespace MantenimientoPY.Controllers
                     {
                         return HttpNotFound();
                     }
+                    GetCoordenadas(id.GetValueOrDefault());
                     return View(denuncia);
                 }
             }
+            
             return RedirectToAction("Index", "Home");
         }
 
@@ -167,7 +188,7 @@ namespace MantenimientoPY.Controllers
                     ViewBag.idEstadoDenuncia = new SelectList(db.EstadoDenuncias, "idEstadoDenuncia", "descripcionEstadoDenuncia", denuncia.idEstadoDenuncia);
                     ViewBag.idPolicia = new SelectList(db.Policias, "idPolicia", "nomCompleto", denuncia.idPolicia);
 
-
+                    GetCoordenadas(id.GetValueOrDefault());
                     return View(denuncia);
                 }
             }
@@ -257,5 +278,6 @@ namespace MantenimientoPY.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 }
