@@ -1,0 +1,93 @@
+﻿@model MantenimientoPY.Models.Policia
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Policia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Identificación: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identificacionPolicia)
+        </dd>
+
+        <dt>
+            Nombre: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombrePolicia)
+        </dd>
+
+        <dt>
+            Apellido paterno:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoPaternoPolicia)
+        </dd>
+
+        <dt>
+            Apellido materno: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoMaternoPolicia)
+        </dd>
+
+        <dt>
+           Dirección: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccionPolicia)
+        </dd>
+
+        <dt>
+            Teléfono: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoPolicia)
+        </dd>
+
+        <dt>
+            Correo: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correoPolicia)
+        </dd>
+
+       
+
+        <dt>
+            Estado: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoPolicia)
+        </dd>
+
+        <dt>
+            Tipo de usuario:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoUsuario.descripcionTipoUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idPolicia }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

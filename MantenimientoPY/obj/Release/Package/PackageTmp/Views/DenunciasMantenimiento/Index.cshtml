@@ -1,0 +1,65 @@
+﻿@model IEnumerable<MantenimientoPY.Models.Denuncia>
+
+@{
+    ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<table class="table">
+    <tr>
+       
+        <th>
+            <p>ID denuncia</p>
+        </th>
+        <th>
+            <p>ID ciudadano</p>
+        </th>
+        <th>
+            <p>Nombre del ciudadano</p>
+        </th>
+        <th>
+            <p>Tipo de denuncia</p>
+        </th>
+        <th>
+            <p>Tipo de delito</p>
+        </th>
+        
+        <th>
+            <p>Estado</p>
+        </th>
+        <th>ID policía</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.idDenuncia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ciudadano.nombreCiudadano)<br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoPatCiudadano)<br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoMatCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDenuncia.nombreDenuncia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDelito.nombreTipoDelito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstadoDenuncia.descripcionEstadoDenuncia)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Policia.idPolicia)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idDenuncia }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idDenuncia }) 
+
+        </td>
+    </tr>
+}
+
+</table>

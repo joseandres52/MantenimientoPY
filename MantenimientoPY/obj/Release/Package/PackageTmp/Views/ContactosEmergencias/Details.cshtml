@@ -1,0 +1,43 @@
+﻿@model MantenimientoPY.Models.ContactosEmergencia
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Contactos de emergencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Número contacto de emergencia</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numContactoEmergencia)
+        </dd>
+
+        <dt>
+            <p>Nombre contacto de emergencia: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreContactoEmergencia)
+        </dd>
+
+        <dt>
+            <p>Nombre contacto de emergencia</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ciudadano.nombreCiudadano) @Html.DisplayFor(model => model.Ciudadano.apellidoPatCiudadano) @Html.DisplayFor(model => model.Ciudadano.apellidoMatCiudadano) <br /> ID: @Html.DisplayFor(model => model.Ciudadano.idCiudadano)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idContactoEmergencia }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

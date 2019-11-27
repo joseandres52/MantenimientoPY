@@ -1,0 +1,35 @@
+﻿@model MantenimientoPY.Models.TipoDenuncia
+
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>TipoDenuncia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tipo de denuncia: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreDenuncia)
+        </dd>
+
+        <dt>
+           Descripción: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionDenincua)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idTipoDenuncia }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

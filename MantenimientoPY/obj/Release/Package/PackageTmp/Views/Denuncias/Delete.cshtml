@@ -1,0 +1,96 @@
+﻿@model MantenimientoPY.Models.Denuncia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Denuncia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.latitudDenuncia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.latitudDenuncia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.longitudDenuncia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longitudDenuncia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcionDenuncia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionDenuncia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.afectadoDenuncia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.afectadoDenuncia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ciudadano.nombreCiudadano)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ciudadano.nombreCiudadano)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDenuncia.nombreDenuncia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDenuncia.nombreDenuncia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoDelito.nombreTipoDelito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDelito.nombreTipoDelito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoDenuncia.descripcionEstadoDenuncia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoDenuncia.descripcionEstadoDenuncia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Policia.nombrePolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Policia.nombrePolicia)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProtectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ciudadano">
+    <Key>
+      <PropertyRef Name="idCiudadano" />
+    </Key>
+    <Property Name="idCiudadano" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombreCiudadano" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoPatCiudadano" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoMatCiudadano" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccionCiudadano" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="passwordCiudadano" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="correoCiudadano" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estadoCiudadano" Type="Int32" />
+    <Property Name="numReportesFalsosCiudadano" Type="Int32" />
+    <Property Name="telefonoCiudadano" Type="Int32" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK__Denuncias__idCiu__4E88ABD4" FromRole="Ciudadanos" ToRole="Denuncias" />
+    <NavigationProperty Name="ContactosEmergencias" Relationship="Self.FK_ContactosEmergencia_Ciudananos" FromRole="Ciudadanos" ToRole="ContactosEmergencia" />
+  </EntityType>
+  <EntityType Name="ContactosEmergencia">
+    <Key>
+      <PropertyRef Name="idContactoEmergencia" />
+    </Key>
+    <Property Name="idContactoEmergencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCiudadano" Type="Int32" Nullable="false" />
+    <Property Name="numContactoEmergencia" Type="Int32" Nullable="false" />
+    <Property Name="nombreContactoEmergencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Ciudadano" Relationship="Self.FK_ContactosEmergencia_Ciudananos" FromRole="ContactosEmergencia" ToRole="Ciudadanos" />
+  </EntityType>
+  <EntityType Name="Denuncia">
+    <Key>
+      <PropertyRef Name="idDenuncia" />
+    </Key>
+    <Property Name="idDenuncia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCiudadano" Type="Int32" Nullable="false" />
+    <Property Name="idPolicia" Type="Int32" />
+    <Property Name="idTipoDenuncia" Type="Int32" Nullable="false" />
+    <Property Name="idTipoDelito" Type="Int32" Nullable="false" />
+    <Property Name="idEstadoDenuncia" Type="Int32" />
+    <Property Name="latitudDenuncia" Type="Decimal" Precision="10" Scale="7" Nullable="false" />
+    <Property Name="longitudDenuncia" Type="Decimal" Precision="10" Scale="7" Nullable="false" />
+    <Property Name="descripcionDenuncia" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="afectadoDenuncia" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ciudadano" Relationship="Self.FK__Denuncias__idCiu__4E88ABD4" FromRole="Denuncias" ToRole="Ciudadanos" />
+    <NavigationProperty Name="TipoDenuncia" Relationship="Self.FK__Denuncias__idTip__5441852A" FromRole="Denuncias" ToRole="TipoDenuncias" />
+    <NavigationProperty Name="TipoDelito" Relationship="Self.FK__Denuncias__idTip__571DF1D5" FromRole="Denuncias" ToRole="TipoDelito" />
+    <NavigationProperty Name="EstadoDenuncia" Relationship="Self.FK_Denuncias_EstadoDenuncia" FromRole="Denuncias" ToRole="EstadoDenuncia" />
+    <NavigationProperty Name="Policia" Relationship="Self.FK_Denuncias_Policias" FromRole="Denuncias" ToRole="Policias" />
+  </EntityType>
+  <EntityType Name="EstadoDenuncia">
+    <Key>
+      <PropertyRef Name="idEstadoDenuncia" />
+    </Key>
+    <Property Name="idEstadoDenuncia" Type="Int32" Nullable="false" />
+    <Property Name="descripcionEstadoDenuncia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_EstadoDenuncia" FromRole="EstadoDenuncia" ToRole="Denuncias" />
+  </EntityType>
+  <EntityType Name="Policia">
+    <Key>
+      <PropertyRef Name="idPolicia" />
+    </Key>
+    <Property Name="idPolicia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="identificacionPolicia" Type="Int32" />
+    <Property Name="nombrePolicia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoPaternoPolicia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidoMaternoPolicia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccionPolicia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="telefonoPolicia" Type="Int32" />
+    <Property Name="correoPolicia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="passwordPolicia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estadoPolicia" Type="Int32" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK_Denuncias_Policias" FromRole="Policias" ToRole="Denuncias" />
+    <NavigationProperty Name="TipoUsuario" Relationship="Self.FK_Policias_TipoUsuario" FromRole="Policias" ToRole="TipoUsuario" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TipoDelito">
+    <Key>
+      <PropertyRef Name="idTipoDelito" />
+    </Key>
+    <Property Name="idTipoDelito" Type="Int32" Nullable="false" />
+    <Property Name="nombreTipoDelito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcionTipoDelito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK__Denuncias__idTip__571DF1D5" FromRole="TipoDelito" ToRole="Denuncias" />
+  </EntityType>
+  <EntityType Name="TipoDenuncia">
+    <Key>
+      <PropertyRef Name="idTipoDenuncia" />
+    </Key>
+    <Property Name="idTipoDenuncia" Type="Int32" Nullable="false" />
+    <Property Name="nombreDenuncia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descripcionDenincua" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Denuncias" Relationship="Self.FK__Denuncias__idTip__5441852A" FromRole="TipoDenuncias" ToRole="Denuncias" />
+  </EntityType>
+  <EntityType Name="TipoUsuario">
+    <Key>
+      <PropertyRef Name="idTipoUsuario" />
+    </Key>
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
+    <Property Name="descripcionTipoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Policias" Relationship="Self.FK_Policias_TipoUsuario" FromRole="TipoUsuario" ToRole="Policias" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK__Denuncias__idCiu__4E88ABD4">
+    <End Role="Ciudadanos" Type="Self.Ciudadano" Multiplicity="1" />
+    <End Role="Denuncias" Type="Self.Denuncia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudadanos">
+        <PropertyRef Name="idCiudadano" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="idCiudadano" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContactosEmergencia_Ciudananos">
+    <End Role="Ciudadanos" Type="Self.Ciudadano" Multiplicity="1" />
+    <End Role="ContactosEmergencia" Type="Self.ContactosEmergencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ciudadanos">
+        <PropertyRef Name="idCiudadano" />
+      </Principal>
+      <Dependent Role="ContactosEmergencia">
+        <PropertyRef Name="idCiudadano" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Denuncias__idTip__5441852A">
+    <End Role="TipoDenuncias" Type="Self.TipoDenuncia" Multiplicity="1" />
+    <End Role="Denuncias" Type="Self.Denuncia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDenuncias">
+        <PropertyRef Name="idTipoDenuncia" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="idTipoDenuncia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Denuncias__idTip__571DF1D5">
+    <End Role="TipoDelito" Type="Self.TipoDelito" Multiplicity="1" />
+    <End Role="Denuncias" Type="Self.Denuncia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDelito">
+        <PropertyRef Name="idTipoDelito" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="idTipoDelito" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Denuncias_EstadoDenuncia">
+    <End Role="EstadoDenuncia" Type="Self.EstadoDenuncia" Multiplicity="0..1" />
+    <End Role="Denuncias" Type="Self.Denuncia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EstadoDenuncia">
+        <PropertyRef Name="idEstadoDenuncia" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="idEstadoDenuncia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Denuncias_Policias">
+    <End Role="Policias" Type="Self.Policia" Multiplicity="0..1" />
+    <End Role="Denuncias" Type="Self.Denuncia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policias">
+        <PropertyRef Name="idPolicia" />
+      </Principal>
+      <Dependent Role="Denuncias">
+        <PropertyRef Name="idPolicia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Policias_TipoUsuario">
+    <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+    <End Role="Policias" Type="Self.Policia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoUsuario">
+        <PropertyRef Name="idTipoUsuario" />
+      </Principal>
+      <Dependent Role="Policias">
+        <PropertyRef Name="idTipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProtectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ciudadanos" EntityType="Self.Ciudadano" />
+    <EntitySet Name="ContactosEmergencias" EntityType="Self.ContactosEmergencia" />
+    <EntitySet Name="Denuncias" EntityType="Self.Denuncia" />
+    <EntitySet Name="EstadoDenuncias" EntityType="Self.EstadoDenuncia" />
+    <EntitySet Name="Policias" EntityType="Self.Policia" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TipoDelitoes" EntityType="Self.TipoDelito" />
+    <EntitySet Name="TipoDenuncias" EntityType="Self.TipoDenuncia" />
+    <EntitySet Name="TipoUsuarios" EntityType="Self.TipoUsuario" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <AssociationSet Name="FK__Denuncias__idCiu__4E88ABD4" Association="Self.FK__Denuncias__idCiu__4E88ABD4">
+      <End Role="Ciudadanos" EntitySet="Ciudadanos" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContactosEmergencia_Ciudananos" Association="Self.FK_ContactosEmergencia_Ciudananos">
+      <End Role="Ciudadanos" EntitySet="Ciudadanos" />
+      <End Role="ContactosEmergencia" EntitySet="ContactosEmergencias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Denuncias__idTip__5441852A" Association="Self.FK__Denuncias__idTip__5441852A">
+      <End Role="TipoDenuncias" EntitySet="TipoDenuncias" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Denuncias__idTip__571DF1D5" Association="Self.FK__Denuncias__idTip__571DF1D5">
+      <End Role="TipoDelito" EntitySet="TipoDelitoes" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Denuncias_EstadoDenuncia" Association="Self.FK_Denuncias_EstadoDenuncia">
+      <End Role="EstadoDenuncia" EntitySet="EstadoDenuncias" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Denuncias_Policias" Association="Self.FK_Denuncias_Policias">
+      <End Role="Policias" EntitySet="Policias" />
+      <End Role="Denuncias" EntitySet="Denuncias" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Policias_TipoUsuario" Association="Self.FK_Policias_TipoUsuario">
+      <End Role="TipoUsuario" EntitySet="TipoUsuarios" />
+      <End Role="Policias" EntitySet="Policias" />
+    </AssociationSet>
+    <FunctionImport Name="SelectTodosCiudadanos" ReturnType="Collection(ProtectModel.SelectTodosCiudadanos_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ProtectModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ProtectModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="SelectTodosCiudadanos_Result">
+    <Property Type="Int32" Name="idCiudadano" Nullable="false" />
+    <Property Type="String" Name="nombreCiudadano" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="apellidoPatCiudadano" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="apellidoMatCiudadano" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="direccionCiudadano" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="passwordCiudadano" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="correoCiudadano" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="estadoCiudadano" Nullable="true" />
+    <Property Type="Int32" Name="numReportesFalsosCiudadano" Nullable="true" />
+    <Property Type="Int32" Name="telefonoCiudadano" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

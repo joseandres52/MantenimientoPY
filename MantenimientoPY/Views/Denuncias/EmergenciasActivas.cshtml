@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MantenimientoPY.Models.Denuncia>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Emergencias activas</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Coordenadas
+        </th>
+        <th>
+            Nombre del afectado
+        </th>
+        <th>
+            Estado de la denuncia
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p> Latitud: @Html.DisplayFor(modelItem => item.latitudDenuncia) <br /> Longitud: @Html.DisplayFor(modelItem => item.longitudDenuncia)</p>
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudadano.nombreCiudadano) <br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoMatCiudadano)  <br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoPatCiudadano)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoDenuncia.descripcionEstadoDenuncia)
+            </td>
+
+            <td>
+                @Html.ActionLink("Atender", "Edit", new { id = item.idDenuncia }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.idDenuncia })
+
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,85 @@
+﻿@model MantenimientoPY.Models.Ciudadano
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ciudadano</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreCiudadano)
+        </dd>
+
+        <dt>
+            Apellido paterno: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoPatCiudadano)
+        </dd>
+
+        <dt>
+            Apellido materno: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoMatCiudadano)
+        </dd>
+
+        <dt>
+            Dirección: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccionCiudadano)
+        </dd>
+
+       
+
+        <dt>
+            Correo: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correoCiudadano)
+        </dd>
+
+        <dt>
+            Estado: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoCiudadano)
+        </dd>
+
+        <dt>
+            Número de reportes falsos:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numReportesFalsosCiudadano)
+        </dd>
+
+        <dt>
+            Télefono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoCiudadano)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCiudadano }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

@@ -1,0 +1,83 @@
+﻿@model MantenimientoPY.Models.Denuncia
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Denuncia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Latitud: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.latitudDenuncia)
+        </dd>
+
+        <dt>
+           Longitud: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.longitudDenuncia)
+        </dd>
+
+        <dt>
+           Descripción: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcionDenuncia)
+        </dd>
+
+        <dt>
+           Afectado: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.afectadoDenuncia)
+        </dd>
+
+        <dt>
+           Nombre del ciudadano denunciante: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ciudadano.nombreCiudadano) @Html.DisplayFor(model => model.Ciudadano.apellidoPatCiudadano) @Html.DisplayFor(model => model.Ciudadano.apellidoMatCiudadano)
+        </dd>
+
+        <dt>
+            Tipo de denuncia: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDenuncia.nombreDenuncia)
+        </dd>
+
+        <dt>
+           Tipo de delito: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoDelito.nombreTipoDelito)
+        </dd>
+
+        <dt>
+            Estado de la denuncia: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoDenuncia.descripcionEstadoDenuncia)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idDenuncia }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

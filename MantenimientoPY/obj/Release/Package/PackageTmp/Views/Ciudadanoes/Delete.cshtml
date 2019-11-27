@@ -1,0 +1,89 @@
+﻿@model MantenimientoPY.Models.Ciudadano
+
+@{
+    ViewBag.Title = "Borrar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Borrar</h2>
+
+<h3>¿Realmente desea eliminar el contacto?</h3>
+<div>
+    <h4>Ciudadano</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>Nombre: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreCiudadano)
+        </dd>
+
+        <dt>
+            <p>Apellido paterno: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoPatCiudadano)
+        </dd>
+
+        <dt>
+            <p>Apellido materno: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoMatCiudadano)
+        </dd>
+
+        <dt>
+            <p>Dirección: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccionCiudadano)
+        </dd>
+
+        <dt>
+            <p>Correo: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correoCiudadano)
+        </dd>
+       
+        <dt>
+            <p>Estado: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoCiudadano)
+        </dd>
+
+        <dt>
+            <p>Número de reportes falsos: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numReportesFalsosCiudadano)
+        </dd>
+
+        <dt>
+            <p>Télefono: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoCiudadano)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

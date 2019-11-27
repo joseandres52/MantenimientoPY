@@ -1,0 +1,106 @@
+﻿@model MantenimientoPY.Models.Policia
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Policia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.identificacionPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identificacionPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombrePolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombrePolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidoPaternoPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoPaternoPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellidoMaternoPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellidoMaternoPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccionPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccionPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefonoPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefonoPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correoPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correoPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passwordPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passwordPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoPolicia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estadoPolicia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoUsuario.descripcionTipoUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoUsuario.descripcionTipoUsuario)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

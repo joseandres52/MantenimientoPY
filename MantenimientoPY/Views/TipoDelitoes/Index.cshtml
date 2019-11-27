@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MantenimientoPY.Models.TipoDelito>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Crear nuevo tipo de delito", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Nombre
+        </th>
+        <th>
+            <p>Tipo de delito</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreTipoDelito)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcionTipoDelito)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idTipoDelito }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.idTipoDelito }) 
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,104 @@
+﻿@model MantenimientoPY.Models.Denuncia
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Denuncia</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.idDenuncia)
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.idCiudadano, "idCiudadano", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idCiudadano", null, htmlAttributes: new { @class = "input-group mb-3" })
+                @Html.ValidationMessageFor(model => model.idCiudadano, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idPolicia, "Nombre del policía", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idPolicia", null, htmlAttributes: new { @class = "input-group mb-3" })
+                @Html.ValidationMessageFor(model => model.idPolicia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.idEstadoDenuncia, "Estado de la denuncia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idEstadoDenuncia", null, htmlAttributes: new { @class = "input-group mb-3" })
+                @Html.ValidationMessageFor(model => model.idEstadoDenuncia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.idTipoDenuncia, "idTipoDenuncia", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idTipoDenuncia", null, htmlAttributes: new { @class = "input-group mb-3" })
+                @Html.ValidationMessageFor(model => model.idTipoDenuncia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.idTipoDelito, "idTipoDelito", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idTipoDelito", null, htmlAttributes: new { @class = "input-group mb-3" })
+                @Html.ValidationMessageFor(model => model.idTipoDelito, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.latitudDenuncia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.latitudDenuncia, new { htmlAttributes = new { @class = "input-group mb-3" } })
+                @Html.ValidationMessageFor(model => model.latitudDenuncia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.longitudDenuncia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.longitudDenuncia, new { htmlAttributes = new { @class = "input-group mb-3" } })
+                @Html.ValidationMessageFor(model => model.longitudDenuncia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.descripcionDenuncia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.descripcionDenuncia, new { htmlAttributes = new { @class = "input-group mb-3" } })
+                @Html.ValidationMessageFor(model => model.descripcionDenuncia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none;">
+            @Html.LabelFor(model => model.afectadoDenuncia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.afectadoDenuncia, new { htmlAttributes = new { @class = "input-group mb-3" } })
+                @Html.ValidationMessageFor(model => model.afectadoDenuncia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5" >
+                <input type="submit" value="Guardar" class="btn btn-primary btn-lg btn-block" style="width: 40%;"  />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

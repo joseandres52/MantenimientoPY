@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MantenimientoPY.Models.Ciudadano>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Agregar ciudadano", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Nombre</p>
+        </th>
+        <th>
+            <p>Apellido paterno</p>
+        </th>
+        <th>
+            <p>Apellido materno</p>
+        </th>
+        <th>
+            <p>Dirección</p>
+        </th>
+       
+        <th>
+            <p>Correo</p>
+        </th>
+        <th>
+            <p>Estado</p>
+        </th>
+        <th>
+            <p>Número de reportes falsos</p>
+        </th>
+        <th>
+            <p>Télefono</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoPatCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoMatCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccionCiudadano)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.correoCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estadoCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numReportesFalsosCiudadano)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefonoCiudadano)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.idCiudadano }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.idCiudadano }) |
+            
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MantenimientoPY.Models.EstadoDenuncia>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Crear un nuevo estado", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcionEstadoDenuncia)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idEstadoDenuncia }) 
+
+            </td>
+        </tr>
+    }
+
+</table>

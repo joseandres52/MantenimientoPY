@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ProtectEntities-Web.config Connection String" description="ProtectEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.DataBaseContext.csdl|res://*/Models.DataBaseContext.ssdl|res://*/Models.DataBaseContext.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=protectyourselfdatabase.database.windows.net;initial catalog=Protect;user id=dbmaster;password=DbMa$ter;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\j\.sandoval\.chavarria\\source\\repos\\MantenimientoPY\\MantenimientoPY\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ProtectEntities']/@connectionString" />
+  </parameter>
+</parameters>
