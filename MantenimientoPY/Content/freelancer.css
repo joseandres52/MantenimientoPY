@@ -10730,3 +10730,7 @@ form .row:first-child .floating-label-form-group {
     border-width: 1px;
     border-color: #E9ECEF;
 }
+.data-grid-link {
+    font-weight: bolder;
+    color: #E17101;
+}

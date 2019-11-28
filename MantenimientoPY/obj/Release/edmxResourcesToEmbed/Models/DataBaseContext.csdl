@@ -46,6 +46,7 @@
     <NavigationProperty Name="TipoDelito" Relationship="Self.FK__Denuncias__idTip__571DF1D5" FromRole="Denuncias" ToRole="TipoDelito" />
     <NavigationProperty Name="EstadoDenuncia" Relationship="Self.FK_Denuncias_EstadoDenuncia" FromRole="Denuncias" ToRole="EstadoDenuncia" />
     <NavigationProperty Name="Policia" Relationship="Self.FK_Denuncias_Policias" FromRole="Denuncias" ToRole="Policias" />
+    <Property Name="fechaDenuncia" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="EstadoDenuncia">
     <Key>

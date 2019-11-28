@@ -18,11 +18,11 @@
     Columns.Add().Encoded(false)
     .Sanitized(false)
     .SetWidth(30)
-    .RenderValueAs(o => Html.ActionLink("Atender", "Edit", new { id = o.idDenuncia }));
+    .RenderValueAs(o => Html.ActionLink("Atender", "Edit", new { id = o.idDenuncia }, new { @class = "data-grid-link" }));
     Columns.Add().Encoded(false)
     .Sanitized(false)
     .SetWidth(30)
-    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idDenuncia }));
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idDenuncia }, new { @class = "data-grid-link" }));
 }).WithPaging(10).Sortable(true)
 
 

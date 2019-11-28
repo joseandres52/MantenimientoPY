@@ -3,12 +3,38 @@
 @{
     ViewBag.Title = "Editar";
 }
+<script type="text/javascript">
+    function DisplayGoogleMap() {
+        var lat = @ViewBag.latitud;
+        var long = @ViewBag.longitud;
+        //Set the Latitude and Longitude of the Map
+        var myAddress = new google.maps.LatLng(lat, long);
 
+        //Create Options or set different Characteristics of Google Map
+        var mapOptions = {
+            center: myAddress,
+            zoom: 15,
+            minZoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        //Display the Google map in the div control with the defined Options
+        var map = new google.maps.Map(document.getElementById("myDiv"), mapOptions);
+
+        //Set Marker on the Map
+        var marker = new google.maps.Marker({
+            position: myAddress,
+            animation: google.maps.Animation.BOUNCE,
+        });
+
+        marker.setMap(map);
+    }
+</script>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Denuncia</h4>
         <hr />
@@ -53,7 +79,7 @@
             </div>
         </div>
 
-      
+
 
         <div class="form-group" style="display:none;">
             @Html.LabelFor(model => model.latitudDenuncia, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -87,9 +113,11 @@
             </div>
         </div>
 
+
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-5" >
-                <input type="submit" value="Guardar" class="btn btn-primary btn-lg btn-block" style="width: 40%;"  />
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" value="Guardar" class="btn btn-primary btn-lg btn-block" style="width: 40%;" />
             </div>
         </div>
     </div>
@@ -98,7 +126,10 @@
 <div>
     @Html.ActionLink("Volver a la lista", "Index")
 </div>
+<div id="myDiv" style="width:100%;height:400px;"></div>
+<script>
+    $(document).ready(function () {
+        DisplayGoogleMap();
+    });
+</script>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

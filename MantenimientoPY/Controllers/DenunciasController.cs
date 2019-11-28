@@ -58,7 +58,7 @@ namespace MantenimientoPY.Controllers
                     var denuncias = from denuncia in db.Denuncias
                                     where denuncia.idEstadoDenuncia == 0 && denuncia.idTipoDenuncia == 1
                                     select denuncia;
-                    Response.AddHeader("Refresh", "5");
+                    Response.AddHeader("Refresh", "10");
                     return View(await denuncias.ToListAsync());
                 }
             }
@@ -73,7 +73,7 @@ namespace MantenimientoPY.Controllers
                     var denuncias = from denuncia in db.Denuncias
                                     where denuncia.idEstadoDenuncia == 0 && denuncia.idTipoDenuncia == 2
                                     select denuncia;
-                    Response.AddHeader("Refresh", "5");
+                    Response.AddHeader("Refresh", "10");
                     return View(await denuncias.ToListAsync());
                 }
             }

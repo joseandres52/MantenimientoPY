@@ -1,60 +1,28 @@
 ﻿@model IEnumerable<MantenimientoPY.Models.Denuncia>
-
+@using GridMvc.Html
 @{
     ViewBag.Title = "View";
 }
 
 <h2>Denuncias activas</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Coordenadas
-        </th>
-        <th>
-            Nombre del afectado
-        </th>
-        <th>
-            Estado de la denuncia
-        </th>
-        <th>
-            Tipo de delito
-        </th>
-        <th>
-            Drescripción
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        <p> Latitud: @Html.DisplayFor(modelItem => item.latitudDenuncia) <br /> Longitud: @Html.DisplayFor(modelItem => item.longitudDenuncia)</p>
-    </td>
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(model => model.Ciudadano.correoCiudadano).Titled("Correo").Filterable(true);
+    Columns.Add(model => model.Ciudadano.nombreCiudadano).Titled("Nombre").Filterable(true);
+    Columns.Add(model => model.Ciudadano.apellidoPatCiudadano).Titled("Apellido paterno").Filterable(true);
+    Columns.Add(model => model.Ciudadano.apellidoMatCiudadano).Titled("Apellido materno").Filterable(true);
+    Columns.Add(model => model.EstadoDenuncia.descripcionEstadoDenuncia).Titled("Estado").Filterable(true);
+    Columns.Add(model => model.TipoDelito.nombreTipoDelito).Titled("Tipo delito").Filterable(true);
+    Columns.Add(model => model.fechaDenuncia).Titled("Fecha").Filterable(true);
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Atender", "Edit", new { id = o.idDenuncia }));
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idDenuncia }));
+}).WithPaging(10).Sortable(true)
 
-
-    <td>
-        @Html.DisplayFor(modelItem => item.Ciudadano.nombreCiudadano) <br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoMatCiudadano)  <br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoPatCiudadano)
-    </td>
-
-
-    <td>
-        @Html.DisplayFor(modelItem => item.EstadoDenuncia.descripcionEstadoDenuncia)
-    </td>
-    <td>
-        <p>@Html.DisplayFor(modelItem => item.TipoDelito.nombreTipoDelito)</p>
-    </td>
-    <td>
-        <p>@Html.DisplayFor(modelItem => item.descripcionDenuncia)</p>
-    </td>
-    <td>
-        @Html.ActionLink("Atender", "Edit", new { id = item.idDenuncia }) |
-        @Html.ActionLink("Detalles", "Details", new { id = item.idDenuncia })
-
-    </td>
-
-</tr>
-    }
-
-</table>
