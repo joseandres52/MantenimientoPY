@@ -38,6 +38,7 @@
     <Property Name="longitudDenuncia" Type="decimal" Precision="10" Scale="7" Nullable="false" />
     <Property Name="descripcionDenuncia" Type="varchar" MaxLength="300" />
     <Property Name="afectadoDenuncia" Type="varchar" MaxLength="300" />
+    <Property Name="fechaDenuncia" Type="datetime" />
   </EntityType>
   <EntityType Name="EstadoDenuncia">
     <Key>
@@ -96,7 +97,7 @@
     <Property Name="descripcionTipoUsuario" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'Protect.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'protect.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="database_firewall_rules">
     <Key>
       <PropertyRef Name="id" />

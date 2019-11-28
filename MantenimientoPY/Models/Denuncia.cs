@@ -24,6 +24,7 @@ namespace MantenimientoPY.Models
         public decimal longitudDenuncia { get; set; }
         public string descripcionDenuncia { get; set; }
         public string afectadoDenuncia { get; set; }
+        public Nullable<System.DateTime> fechaDenuncia { get; set; }
     
         public virtual Ciudadano Ciudadano { get; set; }
         public virtual TipoDenuncia TipoDenuncia { get; set; }

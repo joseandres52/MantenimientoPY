@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ProtectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProtectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ciudadanos">
           <Key>
             <PropertyRef Name="idCiudadano" />
@@ -43,6 +43,7 @@
           <Property Name="longitudDenuncia" Type="decimal" Precision="10" Scale="7" Nullable="false" />
           <Property Name="descripcionDenuncia" Type="varchar" MaxLength="300" />
           <Property Name="afectadoDenuncia" Type="varchar" MaxLength="300" />
+          <Property Name="fechaDenuncia" Type="datetime" />
         </EntityType>
         <EntityType Name="EstadoDenuncia">
           <Key>
@@ -101,7 +102,7 @@
           <Property Name="descripcionTipoUsuario" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Protect.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'protect.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="database_firewall_rules">
           <Key>
             <PropertyRef Name="id" />
@@ -283,8 +284,7 @@ warning 6002: The table/view 'Protect.sys.database_firewall_rules' does not have
             <End Role="Policias" EntitySet="Policias" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProtectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -334,6 +334,7 @@ warning 6002: The table/view 'Protect.sys.database_firewall_rules' does not have
           <NavigationProperty Name="TipoDelito" Relationship="Self.FK__Denuncias__idTip__571DF1D5" FromRole="Denuncias" ToRole="TipoDelito" />
           <NavigationProperty Name="EstadoDenuncia" Relationship="Self.FK_Denuncias_EstadoDenuncia" FromRole="Denuncias" ToRole="EstadoDenuncia" />
           <NavigationProperty Name="Policia" Relationship="Self.FK_Denuncias_Policias" FromRole="Denuncias" ToRole="Policias" />
+          <Property Name="fechaDenuncia" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="EstadoDenuncia">
           <Key>
@@ -626,6 +627,7 @@ warning 6002: The table/view 'Protect.sys.database_firewall_rules' does not have
           <EntitySetMapping Name="Denuncias">
             <EntityTypeMapping TypeName="ProtectModel.Denuncia">
               <MappingFragment StoreEntitySet="Denuncias">
+                <ScalarProperty Name="fechaDenuncia" ColumnName="fechaDenuncia" />
                 <ScalarProperty Name="idDenuncia" ColumnName="idDenuncia" />
                 <ScalarProperty Name="idCiudadano" ColumnName="idCiudadano" />
                 <ScalarProperty Name="idPolicia" ColumnName="idPolicia" />

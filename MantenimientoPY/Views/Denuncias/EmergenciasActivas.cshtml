@@ -14,6 +14,7 @@
     Columns.Add(model => model.Ciudadano.apellidoPatCiudadano).Titled("Apellido paterno").Filterable(true);
     Columns.Add(model => model.Ciudadano.apellidoMatCiudadano).Titled("Apellido materno").Filterable(true);
     Columns.Add(model => model.EstadoDenuncia.descripcionEstadoDenuncia).Titled("Estado").Filterable(true);
+    Columns.Add(model => model.fechaDenuncia).Titled("Fecha").Filterable(true);
     Columns.Add().Encoded(false)
     .Sanitized(false)
     .SetWidth(30)
