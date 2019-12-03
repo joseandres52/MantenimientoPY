@@ -1,45 +1,26 @@
 ﻿@model IEnumerable<MantenimientoPY.Models.ContactosEmergencia>
-
+@using GridMvc.Html
 @{
-    ViewBag.Title = "Lista";
+    ViewBag.Title = "Contactos de emergencias - Lista";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
-<p>
-    @Html.ActionLink("Nuevo", "Create")
+<h2>Mantenimiento de contactos de emergencia</h2>
+<p class="link-agregar">
+    @Html.ActionLink("Agregar Contacto emergencia", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <p>Número del contacto de emergencia</p>
-        </th>
-        <th>
-            <p>Nombre del contacto de emergencia</p>
-        </th>
-        <th>
-            <p>Nombre del ciudadano</p>
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.numContactoEmergencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreContactoEmergencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ciudadano.nombreCiudadano)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idContactoEmergencia }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.idContactoEmergencia }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.idContactoEmergencia })
-        </td>
-    </tr>
-}
-
-</table>
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(model => model.numContactoEmergencia).Titled("Número contacto emergencia").Filterable(true);
+    Columns.Add(model => model.nombreContactoEmergencia).Titled("Nombre contacto").Filterable(true);
+    Columns.Add(model => model.Ciudadano.nombreCiudadano).Titled("Nombre ciudadano").Filterable(true);
+ Columns.Add().Encoded(false)
+  .Sanitized(false)
+  .SetWidth(30)
+  .RenderValueAs(o => Html.ActionLink("Editar", "Edit", new { id = o.idCiudadano }, new { @class = "data-grid-link" }));
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idCiudadano }, new { @class = "data-grid-link" }));
+}).WithPaging(10).Sortable(true)

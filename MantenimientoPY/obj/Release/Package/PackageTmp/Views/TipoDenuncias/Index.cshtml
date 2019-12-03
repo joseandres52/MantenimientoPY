@@ -1,37 +1,26 @@
 ﻿@model IEnumerable<MantenimientoPY.Models.TipoDenuncia>
-
+@using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tipo de denuncia - Lista";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<p>
-    @Html.ActionLink("Crear nuevo tipo de denuncia", "Create")
+    <h2>Mantenimiento tipo de denuncia</h2>
+<p class="link-agregar">
+    @Html.ActionLink("Agregar Tipo denuncia", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <p>Tipo de denuncia </p>
-        </th>
-        <th>
-            <p>Descripción</p>
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreDenuncia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcionDenincua)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idTipoDenuncia }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.idTipoDenuncia })
-        </td>
-    </tr>
-}
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(model => model.nombreDenuncia).Titled("Denuncia").Filterable(true);
+    Columns.Add(model => model.descripcionDenincua).Titled("Descripción").Filterable(true);
 
-</table>
+    Columns.Add().Encoded(false)
+  .Sanitized(false)
+  .SetWidth(30)
+  .RenderValueAs(o => Html.ActionLink("Editar", "Edit", new { id = o.idTipoDenuncia }, new { @class = "data-grid-link" }));
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idTipoDenuncia }, new { @class = "data-grid-link" }));
+}).WithPaging(10).Sortable(true)
+

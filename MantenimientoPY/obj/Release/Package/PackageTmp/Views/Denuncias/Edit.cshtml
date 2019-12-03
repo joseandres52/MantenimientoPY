@@ -1,7 +1,7 @@
 ﻿@model MantenimientoPY.Models.Denuncia
 
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Denuncias - Editar";
 }
 <script type="text/javascript">
     function DisplayGoogleMap() {
@@ -14,7 +14,7 @@
         var mapOptions = {
             center: myAddress,
             zoom: 15,
-            minZoom: 15,
+            minZoom: 1,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -36,7 +36,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Denuncia</h4>
+        <h4>Editar denuncia</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.idDenuncia)

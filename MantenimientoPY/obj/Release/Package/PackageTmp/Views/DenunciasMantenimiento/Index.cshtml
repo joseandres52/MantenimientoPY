@@ -1,65 +1,31 @@
 ﻿@model IEnumerable<MantenimientoPY.Models.Denuncia>
-
+@using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
-        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Denuncias - Lista";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-<table class="table">
-    <tr>
-       
-        <th>
-            <p>ID denuncia</p>
-        </th>
-        <th>
-            <p>ID ciudadano</p>
-        </th>
-        <th>
-            <p>Nombre del ciudadano</p>
-        </th>
-        <th>
-            <p>Tipo de denuncia</p>
-        </th>
-        <th>
-            <p>Tipo de delito</p>
-        </th>
-        
-        <th>
-            <p>Estado</p>
-        </th>
-        <th>ID policía</th>
-    </tr>
+    <h2>Mantenimiento de denuncias</h2>
+<p class="link-agregar">
+    @Html.ActionLink("Agregar denuncia", "Create")
+</p>
 
-@foreach (var item in Model) {
-    <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.idDenuncia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idCiudadano)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ciudadano.nombreCiudadano)<br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoPatCiudadano)<br />@Html.DisplayFor(modelItem => item.Ciudadano.apellidoMatCiudadano)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoDenuncia.nombreDenuncia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoDelito.nombreTipoDelito)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstadoDenuncia.descripcionEstadoDenuncia)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.Policia.idPolicia)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idDenuncia }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.idDenuncia }) 
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(model => model.idDenuncia).Titled("Denuncia").Filterable(true);
+    Columns.Add(model => model.idCiudadano).Titled("Id ciudadano").Filterable(true);
+    Columns.Add(model => model.Ciudadano.nombreCiudadano).Titled("Nombre").Filterable(true);
+    Columns.Add(model => model.Ciudadano.apellidoPatCiudadano).Titled("Apellido paterno").Filterable(true);
+    Columns.Add(model => model.Ciudadano.apellidoMatCiudadano).Titled("Apellido materno").Filterable(true);
+    Columns.Add(model => model.TipoDenuncia.nombreDenuncia).Titled("Tipo denuncia").Filterable(true);
+    Columns.Add(model => model.TipoDelito.nombreTipoDelito).Titled("Tipo delito").Filterable(true);
+    Columns.Add(model => model.Policia.idPolicia).Titled("Id policía").Filterable(true);
+    Columns.Add().Encoded(false)
+  .Sanitized(false)
+  .SetWidth(30)
+  .RenderValueAs(o => Html.ActionLink("Editar", "Edit", new { id = o.idDenuncia }, new { @class = "data-grid-link" }));
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idDenuncia }, new { @class = "data-grid-link" }));
+}).WithPaging(10).Sortable(true)
 
-        </td>
-    </tr>
-}
-
-</table>

@@ -10730,3 +10730,14 @@ form .row:first-child .floating-label-form-group {
     border-width: 1px;
     border-color: #E9ECEF;
 }
+.data-grid-link {
+    font-weight: bolder;
+    color: #E17101;
+}
+link-agregar {
+    color: #E17101;
+}
+body > div.container.body-content > p > a {
+    color: #E17101;
+    font-weight:bold;
+}

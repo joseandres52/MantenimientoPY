@@ -1,7 +1,7 @@
 ﻿@model MantenimientoPY.Models.Denuncia
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Denuncias - detalles";
 }
 
 <script type="text/javascript">
@@ -15,7 +15,7 @@
         var mapOptions = {
             center: myAddress,
             zoom: 15,
-            minZoom: 15,
+            minZoom: 1,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -26,12 +26,13 @@
         var marker = new google.maps.Marker({
             position: myAddress,
             animation: google.maps.Animation.BOUNCE,
+            
         });
 
         marker.setMap(map);
     }
 </script>
-<h2>Detalles</h2>
+<h2>Detalles denuncia</h2>
 
 <div>
     <h4>Denuncia</h4>

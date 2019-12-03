@@ -1,30 +1,26 @@
 ﻿@model IEnumerable<MantenimientoPY.Models.TipoUsuario>
-
+@using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tipo de usuario - Lista";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+    <h2>Mantenimiento tipo de usuario</h2>
 
-<p>
-    @Html.ActionLink("Crear nuevo tipo de usuario policía", "Create")
+<p class="link-agregar">
+    @Html.ActionLink("Agregar Tipo de usuario", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <p>Tipo de usuario</p>
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcionTipoUsuario)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idTipoUsuario }) 
-        </td>
-    </tr>
-}
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(model => model.descripcionTipoUsuario).Titled("Descripción").Filterable(true);
 
-</table>
+    Columns.Add().Encoded(false)
+  .Sanitized(false)
+  .SetWidth(30)
+  .RenderValueAs(o => Html.ActionLink("Editar", "Edit", new { id = o.idTipoUsuario}, new { @class = "data-grid-link" }));
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idTipoUsuario}, new { @class = "data-grid-link" }));
+}).WithPaging(10).Sortable(true)
+

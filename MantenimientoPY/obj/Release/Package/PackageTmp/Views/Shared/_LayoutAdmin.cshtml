@@ -3,19 +3,34 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -Protect Yourself mantenimiento</title>
+    <title>@ViewBag.Title - Protect Yourself mantenimiento</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" type="text/css" href="~/Content/freelancer.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js? key=AIzaSyBUaQwl_iKGuAGXcYGMpjMvyyOlUya5x0M&callback=initMap"></script>
+
+    <style type="text/css">
+
+        #map_canvas {
+            height: 400px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
                 <div class="container">
-                    <a class="navbar-brand js-scroll-trigger" href="/Home/Admin"><img src="~/img/Logo.png"  style="width: 162px;height: 40px;"/></a>
-                    
-                   
+                    <a class="navbar-brand js-scroll-trigger" href="/Home/Admin"><img src="~/img/Logo.png" style="width: 162px;height: 40px;" /></a>
+
+
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item mx-0 mx-lg-1">
@@ -55,12 +70,13 @@
         @RenderBody()
         <hr />
         <footer>
-            
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/gridmvc.js"></script>
 </body>
 </html>

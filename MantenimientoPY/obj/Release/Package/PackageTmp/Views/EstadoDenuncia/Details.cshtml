@@ -1,11 +1,11 @@
 ﻿@model MantenimientoPY.Models.EstadoDenuncia
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Estado denuncia - Detalles";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles estado</h2>
 
 <div>
     <h4>EstadoDenuncia</h4>
@@ -22,6 +22,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idEstadoDenuncia }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.idEstadoDenuncia }) |
+    @Html.ActionLink("Volver a la lista", "Index")
 </p>

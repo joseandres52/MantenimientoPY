@@ -1,11 +1,11 @@
 ﻿@model MantenimientoPY.Models.Policia
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Policías - Crear";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Crear policía</h2>
 
 
 @using (Html.BeginForm())
@@ -98,14 +98,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-primary btn-lg btn-block" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a la lista", "Index")
 </div>
 
 @section Scripts {

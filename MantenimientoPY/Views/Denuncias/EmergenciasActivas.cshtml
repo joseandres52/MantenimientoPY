@@ -2,11 +2,14 @@
 @using GridMvc.Html
 
 @{
-    ViewBag.Title = "View";
+    ViewBag.Title = "Denuncias - Emergencias activas";
 
 }
 
 <h2>Emergencias activas</h2>
+<div style="margin-bottom:10px; width: 35%;">
+    <a href="/Denuncias/MapaEmergencias"><button type="button" class="btn btn-primary btn-lg btn-block">Ver todas las emergencias en el mapa</button></a>
+</div>
 
 @Html.Grid(Model).Columns(Columns => {
     Columns.Add(model => model.Ciudadano.correoCiudadano).Titled("Correo").Filterable(true);

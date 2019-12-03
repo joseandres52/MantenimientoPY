@@ -30,7 +30,8 @@ namespace MantenimientoPY.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        public void GetCoordenadas(int id) {
+        public void GetCoordenadas(int id)
+        {
             string queryString = "SELECT latitudDenuncia, longitudDenuncia FROM Denuncias Where idDenuncia = " + id;
             string connectionString = "data source=protectyourselfdatabase.database.windows.net;initial catalog=Protect;user id=dbmaster;password=DbMa$ter;MultipleActiveResultSets=True;App=EntityFramework";
 
@@ -48,6 +49,38 @@ namespace MantenimientoPY.Controllers
                 }
             }
         }
+        public async Task<ActionResult> MapaEmergencias()
+        {
+            if (Request.Cookies["myCookie"] != null)
+            {
+                var value = Request.Cookies["myCookie"].Value;
+                if (value == "logueado")
+                {
+                    var denuncias = from denuncia in db.Denuncias
+                                    where denuncia.idEstadoDenuncia == 0 && denuncia.idTipoDenuncia == 1
+                                    select denuncia;
+                   
+                    return View(await denuncias.ToListAsync());
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<ActionResult> MapaDenuncias()
+        {
+            if (Request.Cookies["myCookie"] != null)
+            {
+                var value = Request.Cookies["myCookie"].Value;
+                if (value == "logueado")
+                {
+                    var denuncias = from denuncia in db.Denuncias
+                                    where denuncia.idEstadoDenuncia == 0 && denuncia.idTipoDenuncia == 2
+                                    select denuncia;
+
+                    return View(await denuncias.ToListAsync());
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
         public async Task<ActionResult> EmergenciasActivas()
         {
             if (Request.Cookies["myCookie"] != null)
@@ -58,13 +91,14 @@ namespace MantenimientoPY.Controllers
                     var denuncias = from denuncia in db.Denuncias
                                     where denuncia.idEstadoDenuncia == 0 && denuncia.idTipoDenuncia == 1
                                     select denuncia;
-                    Response.AddHeader("Refresh", "10");
+                    Response.AddHeader("Refresh", "120");
                     return View(await denuncias.ToListAsync());
                 }
             }
             return RedirectToAction("Index", "Home");
         }
-        public async Task<ActionResult> DenunciasActivas() {
+        public async Task<ActionResult> DenunciasActivas()
+        {
             if (Request.Cookies["myCookie"] != null)
             {
                 var value = Request.Cookies["myCookie"].Value;
@@ -73,7 +107,7 @@ namespace MantenimientoPY.Controllers
                     var denuncias = from denuncia in db.Denuncias
                                     where denuncia.idEstadoDenuncia == 0 && denuncia.idTipoDenuncia == 2
                                     select denuncia;
-                    Response.AddHeader("Refresh", "10");
+                    Response.AddHeader("Refresh", "120");
                     return View(await denuncias.ToListAsync());
                 }
             }
@@ -100,7 +134,7 @@ namespace MantenimientoPY.Controllers
                     return View(denuncia);
                 }
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -153,13 +187,15 @@ namespace MantenimientoPY.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-        private  Ciudadano ObtenerInfoCiudadano(int id) {
+        private Ciudadano ObtenerInfoCiudadano(int id)
+        {
 
-            Ciudadano ciudadano =  db.Ciudadanos.Find(id);
-            if (ciudadano == null) {
+            Ciudadano ciudadano = db.Ciudadanos.Find(id);
+            if (ciudadano == null)
+            {
                 return null;
             }
-           
+
             return ciudadano;
         }
 

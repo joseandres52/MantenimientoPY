@@ -1,72 +1,32 @@
 ﻿@model IEnumerable<MantenimientoPY.Models.Policia>
-
+    @using GridMvc.Html
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Policías - Lista";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<p>
-    @Html.ActionLink("Crear nuevo", "Create")
+    <h2>Mantenimiento de policías</h2>
+<p class="link-agregar">
+    @Html.ActionLink("Agregar Id policía", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Identificación
-        </th>
-        <th>
-            Nombre
-        </th>
-        
-        <th>
-            Dirección
-        </th>
-        <th>
-           Teléfono
-        </th>
-        <th>
-            Correo
-        </th>
-       
-        <th>
-            Estado
-        </th>
-        <th>
-           Tipo de usuario
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.identificacionPolicia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombrePolicia)  @Html.DisplayFor(modelItem => item.apellidoPaternoPolicia)  @Html.DisplayFor(modelItem => item.apellidoMaternoPolicia)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.direccionPolicia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefonoPolicia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.correoPolicia)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.estadoPolicia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoUsuario.descripcionTipoUsuario)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.idPolicia }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.idPolicia }) 
-            </td>
-        </tr>
-    }
+@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(model => model.identificacionPolicia).Titled("Identificación policía").Filterable(true);
+    Columns.Add(model => model.nombrePolicia).Titled("Nombre").Filterable(true);
+    Columns.Add(model => model.apellidoPaternoPolicia).Titled("Apellido paterno").Filterable(true);
+    Columns.Add(model => model.apellidoMaternoPolicia).Titled("Apellido materno").Filterable(true);
+    Columns.Add(model => model.direccionPolicia).Titled("Direccion policía").Filterable(true);
+    Columns.Add(model => model.telefonoPolicia).Titled("Telefono policía").Filterable(true);
+    Columns.Add(model => model.correoPolicia).Titled("Correo policía").Filterable(true);
+    Columns.Add(model => model.estadoPolicia).Titled("Estado policía").Filterable(true);
+    Columns.Add().Encoded(false)
+  .Sanitized(false)
+  .SetWidth(30)
+  .RenderValueAs(o => Html.ActionLink("Editar", "Edit", new { id = o.idPolicia }, new { @class = "data-grid-link" }));
+    Columns.Add().Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Detalles", "Details", new { id = o.idPolicia }, new { @class = "data-grid-link" }));
+}).WithPaging(10).Sortable(true)
 
-</table>
